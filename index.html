@@ -13,39 +13,25 @@
         <label for="suggestion">Submit a Suggestion</label>
         <input type="text" id="suggestion" name="suggestion" required>
         <br>
-        <button type="button" onclick="submitSuggestion()">Submit</button>
+        <button type="button" onclick="s()">Submit</button>
     </form>
 
     <script>
-        function submitSuggestion() {
-            var suggestion = document.getElementById('suggestion').value;
-
-            // Replace 'YOUR_DISCORD_WEBHOOK_URL' with your actual Discord webhook URL
-            var webhookURL = 'https://discord.com/api/webhooks/1196745229697552447/JYnqMWxCZ0wJPtAdrffjWEMe5JN9D3OHs2bjF4XyZHEBLCY3hSFvKEyX2D0e_rva1K-6';
-
-            // Create a JSON object with the suggestion
-            var data = {
-                content: suggestion
-            };
-
-            // Send the suggestion to the Discord webhook
-            fetch(webhookURL, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
-            })
-            .then(response => {
-                if (response.ok) {
+        function s() {
+            var s = document.getElementById('suggestion').value;
+            var w = 'https://discord.com/api/webhooks/1196745229697552447/JYnqMWxCZ0wJPtAdrffjWEMe5JN9D3OHs2bjF4XyZHEBLCY3hSFvKEyX2D0e_rva1K-6';
+            var d = { c: s };
+            fetch(w, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(d) })
+            .then(r => {
+                if (r.ok) {
                     alert('Suggestion submitted successfully!');
                     document.getElementById('suggestionForm').reset();
                 } else {
                     alert('Error submitting suggestion. Please try again.');
                 }
             })
-            .catch(error => {
-                console.error('Error:', error);
+            .catch(e => {
+                console.error('Error:', e);
                 alert('An unexpected error occurred. Please try again later.');
             });
         }
